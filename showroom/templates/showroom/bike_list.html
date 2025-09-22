@@ -1,0 +1,27 @@
+{% extends "showroom/base.html" %}
+{% block content %}
+<section class="container py-5">
+  <h1>{{ company.name }} Bikes</h1>
+  <div class="row">
+    {% for bike in bikes %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://cdn-icons-png.flaticon.com/512/69/69524.png" 
+             class="card-img-top p-4" style="height:200px; object-fit:contain;">
+        <div class="card-body">
+          <h5 class="card-title">{{ bike.name }}</h5>
+          <p class="price">₹ {{ bike.price }}</p>
+          <p><strong>Stock:</strong> {{ bike.stock }}</p>
+          <div class="d-flex gap-2">
+            <a href="{% url 'add_to_cart' bike.id %}" class="btn btn-success w-50">Add to Cart</a>
+            <a href="{% url 'buy_now' bike.id %}" class="btn btn-warning w-50">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No bikes available for {{ company.name }}.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

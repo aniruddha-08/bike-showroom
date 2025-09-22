@@ -1,0 +1,38 @@
+{% extends "showroom/base.html" %}
+{% block content %}
+<section class="container py-5">
+  <h2>🛒 Your Cart</h2>
+  {% if items %}
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Bike</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.bike.name }}</td>
+        <td>₹ {{ item.bike.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹ {{ item.get_total }}</td>
+        <td>
+          <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm">Remove</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-end mt-3">
+    <h4>Total: ₹ {{ total }}</h4>
+    <a href="{% url 'generate_bill' %}" class="btn btn-primary">Generate Bill</a>
+  </div>
+  {% else %}
+  <p class="text-center mt-5">Your cart is empty! 😔 <a href="/">Go back to Home</a></p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "showroom/base.html" %}
+{% block content %}
+<header class="bg-dark text-light text-center py-5">
+  <h1 class="display-4">Welcome to Bike Showroom</h1>
+  <p class="lead">Choose your favorite brand and explore the latest bikes</p>
+</header>
+
+<section class="container py-5">
+  <div class="row text-center">
+    {% for company in companies %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img src="https://via.placeholder.com/200?text={{ company.name }}" 
+             class="card-img-top p-3" alt="{{ company.name }}" style="height:180px; object-fit:contain;">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">Explore {{ company.name }} bikes.</p>
+          <a href="{% url 'bike_list' company.id %}" class="btn btn-primary w-100">Explore</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

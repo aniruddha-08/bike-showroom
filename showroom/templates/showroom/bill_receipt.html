@@ -1,0 +1,27 @@
+<section class="container py-5">
+  <h2>Bill Receipt</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Bike</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.bike.name }}</td>
+        <td>₹ {{ item.bike.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹ {{ item.get_total }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-end">
+    <h4>Total Amount: ₹ {{ total }}</h4>
+  </div>
+  <a href="/" class="btn btn-success mt-3">Back to Home</a>
+</section>

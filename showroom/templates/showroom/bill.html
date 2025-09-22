@@ -1,0 +1,30 @@
+{% extends "showroom/base.html" %}
+{% block content %}
+<section class="container py-5">
+  <h2>🧾 Bill Receipt</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Bike</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bike, qty, subtotal in items %}
+      <tr>
+        <td>{{ bike.name }}</td>
+        <td>₹ {{ bike.price }}</td>
+        <td>{{ qty }}</td>
+        <td>₹ {{ subtotal }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-end mt-3">
+    <h4>Total Amount: ₹ {{ total }}</h4>
+    <a href="/" class="btn btn-success mt-2">Back to Home</a>
+  </div>
+</section>
+{% endblock %}
